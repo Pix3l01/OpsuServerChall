@@ -32,5 +32,16 @@ def getKey():
     return base64.b64encode(toSend)
 
 
+@app.route('/api/upload', methods=['POST'])
+def upload():
+    uid = request.headers.get('Id')
+    if uid is None:
+        return base64.b64encode('Nope'.encode())
+    content = request.json
+    decrypted = cp.decrypt(cp.genKey(cp.chiavissima.encode()), base64.b64decode(content['data']), uid)
+    print(decrypted)
+    return str(decrypted)
+
+
 if __name__ == '__main__':
     app.run()
