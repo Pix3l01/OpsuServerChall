@@ -1,4 +1,9 @@
-from flask import Flask, render_template
+import base64
+
+from flask import Flask, render_template, request
+from Crypto import Random
+
+import bakand.cryptography as cp
 
 app = Flask(__name__)
 
@@ -6,6 +11,25 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+@app.route('/api')
+def api():
+    return 'this is the API'
+
+
+@app.route('/api/key', methods=['GET'])
+def getKey():
+    uid = request.headers.get('Id')
+    if uid is None:
+        return base64.b64encode('Nope'.encode())
+    key = cp.genKey(uid.encode())
+    data = cp.genPsw()
+    print(data)
+    cp.chiavissima = data
+    toSend = cp.encrypt(data, key, uid)
+
+    return base64.b64encode(toSend)
 
 
 if __name__ == '__main__':
