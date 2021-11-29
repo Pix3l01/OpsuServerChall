@@ -26,7 +26,6 @@ def getKey():
     print(data)
     user.otp = data
     db.session.commit()
-    cp.chiavissima = data
     toSend = cp.encrypt(data, key, uid)
 
     return base64.b64encode(toSend)
@@ -37,7 +36,10 @@ def upload():
     uid = request.headers.get('Id')
     if uid is None:
         return base64.b64encode('Nope'.encode())
+    user = User.query.filter_by(guid=uid).first()
+    if user is None:
+        return base64.b64encode('No such user'.encode())
     content = request.json
-    decrypted = cp.decrypt(cp.genKey(cp.chiavissima.encode()), base64.b64decode(content['data']), uid)
+    decrypted = cp.decrypt(cp.genKey(user.otp.encode()), base64.b64decode(content['data']), uid)
     print(decrypted)
     return str(decrypted)
