@@ -4,9 +4,14 @@ from flask import Flask, render_template, request
 from Crypto import Random
 
 import bakand.cryptography as cp
+from bakand.db.dbClasses import db, User
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+db.init_app(app)
 
+with app.app_context():
+    db.create_all()
 
 @app.route('/')
 def index():
@@ -15,7 +20,7 @@ def index():
 
 @app.route('/api')
 def api():
-    return 'this is the API'
+    return 'this is the API' + str(User.query.all())
 
 
 @app.route('/api/key', methods=['GET'])
@@ -45,3 +50,4 @@ def upload():
 
 if __name__ == '__main__':
     app.run()
+
