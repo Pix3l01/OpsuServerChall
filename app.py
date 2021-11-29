@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect
 from flask_login import LoginManager
 from api import api
 from auth import auth
+from profile import profile
 from bakand.db.dbClasses import db, User
 
 app = Flask(__name__)
@@ -21,6 +22,7 @@ def load_user(user_id):
 
 app.register_blueprint(api)
 app.register_blueprint(auth)
+app.register_blueprint(profile)
 
 with app.app_context():
     db.create_all()
