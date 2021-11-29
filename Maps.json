@@ -5,15 +5,16 @@
     "artist": "Napalm Death",
     "creator": "MillhioreF",
     "version": "Easy",
-    "score": 932,
-    "MSID": 67814
+    "MSID": 67814,
+    "toBeat": 1500
   },
   "map2": {
-    "MID": 196716,
+    "MID": 196719,
     "title": "You Suffer",
     "artist": "Napalm Death",
     "creator": "MillhioreF",
-    "version": "Easy",
-    "MSID": 67814
+    "version": "Normal",
+    "MSID": 67814,
+    "toBeat": 2000
   }
 }

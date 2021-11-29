@@ -5,9 +5,42 @@
 {% endblock %}
 
 {% block body %}
+    {% set ns = namespace(winner = 1) %}
     <div>
         <h2>Hello {{ name }}!</h2>
         <h3>This is your profile</h3>
-        <h3>Tour GUID is: {{ guid }}</h3>
+        <h3>Your GUID is: {{ guid }}</h3>
+    </div>
+    <div>
+        <h2>Your scores</h2>
+        <table>
+            <tr>
+                <th>Map ID</th>
+                <th>Map title</th>
+                <th>Your score</th>
+                <th>Score to beat</th>
+                <th>Done</th>
+            </tr>
+            {% for map in maps %}
+                <tr>
+                    <td>{{ map.id }}</td>
+                    <td>{{ map.title }}</td>
+                    <td>{{ map.score }}</td>
+                    <td>{{ map.toBeat }}</td>
+                    {% if map.done %}
+                        <td>✅</td>
+                    {% else %}
+                        <td>❌</td>
+                        {% set ns.winner = 0 %}
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div>
+        {% if ns.winner == 1 %}
+            <h2>Congratulation, you won!</h2>
+            <h3>Here's your prize 🚩: {{ flag }} {{ ns.winner }}</h3>
+        {% endif %}
     </div>
 {% endblock %}
