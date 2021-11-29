@@ -6,4 +6,4 @@ profile = Blueprint('profile', __name__, template_folder='templates')
 @profile.route('/profile')
 @login_required
 def profilePage():
-    return render_template('profile.html', name=current_user.username)
+    return render_template('profile.html', name=current_user.username, guid=current_user.guid)
