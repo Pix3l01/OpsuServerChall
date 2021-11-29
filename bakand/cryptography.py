@@ -7,8 +7,14 @@ from Crypto.Cipher import AES
 from bakand.db.dbClasses import User
 
 BS = 16
-pad = lambda s: s + (BS - len(s) % BS) * chr(BS - len(s) % BS)
-unpad = lambda s: s[0:-s[-1]]
+
+
+def pad(s):
+    return s + (BS - len(s) % BS) * chr(BS - len(s) % BS)
+
+
+def unpad(s):
+    return s[0:-s[-1]]
 
 
 def genKey(password):
