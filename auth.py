@@ -1,6 +1,6 @@
 from flask import Blueprint, request, redirect, render_template, flash
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import login_user
+from flask_login import login_user, logout_user
 
 from bakand.db.dbClasses import db, User
 from bakand.cryptography import createGuid
@@ -52,4 +52,5 @@ def login():
 
 @auth.route('/logout')
 def logout():
-    return 'logout'
+    logout_user()
+    return redirect('/')
