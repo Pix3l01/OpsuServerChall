@@ -1,4 +1,4 @@
-from flask import Blueprint, request, redirect, render_template
+from flask import Blueprint, request, redirect, render_template, flash
 from bakand.db.dbClasses import db, User
 
 auth = Blueprint('auth', __name__, template_folder='templates')
@@ -8,14 +8,20 @@ auth = Blueprint('auth', __name__, template_folder='templates')
 def register():
     if request.method == 'POST':
         try:
-            user = request.form['user']
-            password = request.form['password']
-            db.session.add(User(username=user, accountPassword=password))
+            username = request.form.get('user')
+            password = request.form.get('password')
+            print(username, password)
+            user = User.query.filter_by(username=username).first()
+            print(user)
+            if user:
+                flash('User already exists')
+                return redirect('/register')
+            db.session.add(User(username=username, accountPassword=password))
             db.session.commit()
         except Exception as e:
             # TODO: handle exceptions
             print(e)
-        return redirect('/register')
+        return redirect('/login')
     return render_template('register.html')
 
 

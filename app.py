@@ -4,6 +4,7 @@ from auth import auth
 from bakand.db.dbClasses import db, User
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'BananaGelatosaViennente'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 db.init_app(app)
 app.register_blueprint(api)

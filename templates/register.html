@@ -7,6 +7,13 @@
 {% block body %}
     <div>
         <h2>Register</h2>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="notification is-danger">
+                    {{ messages[0] }}. Go to <a href="{{ url_for('auth.login') }}">login page</a>.
+                </div>
+            {% endif %}
+        {% endwith %}
         <form action="/register" method="post">
             username: <input type="text" name="user" id="user">
             <br>
