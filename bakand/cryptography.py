@@ -4,6 +4,8 @@ import string
 from hashlib import pbkdf2_hmac
 from Crypto.Cipher import AES
 
+from bakand.db.dbClasses import User
+
 BS = 16
 pad = lambda s: s + (BS - len(s) % BS) * chr(BS - len(s) % BS)
 unpad = lambda s: s[0:-s[-1]]
@@ -37,3 +39,11 @@ def decrypt(key, enc, user):
 def genPsw():
     return ''.join(
         random.SystemRandom().choice(string.ascii_letters + string.digits + string.punctuation) for _ in range(20))
+
+
+def createGuid():
+    gid = ''.join(random.SystemRandom().choice(string.ascii_letters + string.digits) for _ in range(16))
+    while len(User.query.filter_by(guid=gid).all()) != 0:
+        gid = ''.join(
+            random.SystemRandom().choice(string.ascii_letters + string.digits) for _ in range(16))
+    return gid
