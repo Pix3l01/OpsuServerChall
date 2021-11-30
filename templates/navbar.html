@@ -3,10 +3,11 @@
         <div>
             <a href="/">CTC</a>
             <a href="/#client">Download</a>
-            <a href="/register">Register</a>
             {% if authenticated%}
+                <a href="/profile">Profile</a>
                 <a href="/logout">logout</a>
             {% else %}
+                <a href="/register">Register</a>
                 <a href="/login">login</a>
             {% endif %}
         </div>
