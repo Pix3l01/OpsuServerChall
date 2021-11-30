@@ -1,0 +1,14 @@
+{% macro navbar() %}
+    <nav>
+        <div>
+            <a href="/">CTC</a>
+            <a href="/#client">Download</a>
+            <a href="/register">Register</a>
+            {% if authenticated%}
+                <a href="/logout">logout</a>
+            {% else %}
+                <a href="/login">login</a>
+            {% endif %}
+        </div>
+    </nav>
+{% endmacro %}

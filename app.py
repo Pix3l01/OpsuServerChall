@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect
-from flask_login import LoginManager
+from flask_login import LoginManager, current_user
 from api import api
 from auth import auth
 from profile import profile
@@ -30,7 +30,7 @@ with app.app_context():
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', authenticated=current_user.is_authenticated)
 
 
 if __name__ == '__main__':

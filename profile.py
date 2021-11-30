@@ -18,4 +18,4 @@ def profilePage():
             maps[i].score = sc.score
             if maps[i].score >= maps[i].toBeat:
                 maps[i].done = True
-    return render_template('profile.html', name=current_user.username, guid=current_user.guid, maps=maps, flag='ptm{test}')
+    return render_template('profile.html', name=current_user.username, guid=current_user.guid, maps=maps, flag='ptm{test}', authenticated=current_user.is_authenticated)

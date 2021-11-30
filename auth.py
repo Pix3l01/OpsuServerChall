@@ -1,6 +1,6 @@
 from flask import Blueprint, request, redirect, render_template, flash
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, current_user
 
 from bakand.db.dbClasses import db, User
 from bakand.cryptography import createGuid
@@ -26,7 +26,7 @@ def register():
             # TODO: handle exceptions
             print(e)
         return redirect('/login')
-    return render_template('register.html')
+    return render_template('register.html', authenticated=current_user.is_authenticated)
 
 
 @auth.route('/login', methods=['GET', 'POST'])
@@ -48,7 +48,7 @@ def login():
         # if the above check passes, then we know the user has the right credentials
         login_user(user, remember=remember)
         return redirect('/profile')
-    return render_template('login.html')
+    return render_template('login.html', authenticated=current_user.is_authenticated)
 
 
 @auth.route('/logout')
