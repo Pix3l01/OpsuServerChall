@@ -46,10 +46,10 @@ def upload():
     loaded = json.loads(decrypted.decode())
     error = 0
     print(loaded)
-    if loaded['checksum'] != '9360e9de5230b5e1a1c7a79d15f17d0386878cdff9d72df9b4f4768be31b8249':
+    if loaded['checksum'] != '404cf2e581881d45350fc382847fff01ca637cdabf3fb11701a57de8d61ec3c5':
         error = 1
         print(error)
-        return base64.b64encode('Don\'t mess with the jar! ):'.encode())
+        return base64.b64encode('Don\'t mess with the jar! @:<'.encode())
     user = User.query.filter_by(guid=loaded['player']).first()
     if user is None:
         error = 2

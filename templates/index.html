@@ -1,18 +1,74 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<title>Click the Circles!</title>
+    <title>Click the Circles!</title>
 {% endblock %}
 
 {% block body %}
-<h1>Click The Circles!</h1>
-<p>Are you better than Cookiezi? Show it to us and win a fantastic prize 🚩!</p>
-<h2>How to do it?</h2>
-<ul>
-    <li><a href="/register">Register</a> on our website and get your UUID</li>
-    <li><a href="download.html">Download</a> our super secure anti tampering client and login with your UUID</li>
-    <li>Beat the score on 3 <a href="maps.html">maps</a></li>
-    <li>Win the prize 🚩!</li>
-</ul>
+    <div>
+        <h1>Click The Circles!</h1>
+        <p>Are you better than Cookiezi? Show it to us and win a fantastic prize 🚩!</p>
+        <h2>How to do it?</h2>
+        <ul>
+            <li><a href="/register">Register</a> on our website and get your GUID</li>
+            <li><a href="#client">Download</a> our super secure anti tampering client and login with your GUID
+            </li>
+            <li>Beat the score on 3 <a href="#maps">maps</a></li>
+            <li>Win the prize 🚩!</li>
+        </ul>
+    </div>
+    <hr>
+    <div>
+        <h2>Download</h2>
+        <div id="client">
+            <h3>The client</h3>
+            <button type="submit" onclick="window.open('static/Client.jar')">Download the client</button>
+            <p>The client has been tested on Windows (Windows 10) and Linux (MX Linux 21) with <a
+                    href="https://www.oracle.com/it/java/technologies/javase/jdk11-archive-downloads.html">Java 11</a>
+            </p>
+            <h3>Client login</h3>
+            <p>To login into the client you first need to <a href="/register">register</a> to the website.<br>
+                Once registered <a href="/login">login</a> and go to your <a href="profile.html">profile</a>. There you
+                will find your GUID to login in the client.<br>
+                Launch the client and click on the top left corner where you see the word 'Guest'. On the menu, click on
+                'Add User' and paste you GUID in 'Type your UID' and press enter on your keyboard.<br>
+                You are now logged in the client and can play the challenge maps by clicking on the big blue star and
+                then on 'play'.<br>
+                Launching the game for the first time will create multiple files and folders in the client's path. Don't
+                delete them since the client needs them to run properly.
+            </p>
+        </div>
+        <div id="maps">
+            <h3>The maps</h3>
+            <table>
+                <tr>
+                    <th>Map 1: You suffer</th>
+                    <th>Map 2: ??</th>
+                    <th>Map 3: ??</th>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit" onclick="window.open('static/You_Suffer.zip')">Download</button>
+                    </td>
+                    <td>
+                        <button type="submit" onclick="window.open('static/')">Download</button>
+                    </td>
+                    <td>
+                        <button type="submit" onclick="window.open('static/')">Download</button>
+                    </td>
+                </tr>
+            </table>
+            <h3>Add a map</h3>
+            <p>
+                To add a map look for the folder 'Songs' inside the path of the client (if you don't see it, launch the
+                game and it should be created. If it's still not showing, create it yourself).<br>
+                Download the zip file of the map from the table above and extract it's content inside the "Songs" folder
+                you located previously.<br>
+                The next time you launch the client the map will be loaded and you'll be ready to play it.<br>
+                If you have too many maps in your play window, just start typing the name of the map you need and the
+                client will filter it for you.
+            </p>
+        </div>
+    </div>
 
 {% endblock %}
