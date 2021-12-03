@@ -1,4 +1,5 @@
 import json
+import os
 
 
 def getMaps():
@@ -12,7 +13,12 @@ def getMaps():
 
 
 def getMapsForProfileTable():
-    with open('Maps.json', 'r') as fin:
+    # if os.path.isfile('../Maps.json'):
+    #     print("C'è il file")
+    # else:
+    #     print("Non c'è il file")
+    print(os.listdir('.'))
+    with open('app/Maps.json', 'r') as fin:
         parsed = json.loads(fin.read())
         maps = []
         for m in parsed:
