@@ -35,6 +35,7 @@ def getKey():
 
 @api.route('/api/upload', methods=['POST'])
 def upload():
+    # TODO: delete otp from db once used
     uid = request.headers.get('Id')
     if uid is None:
         return base64.b64encode('Nope'.encode())

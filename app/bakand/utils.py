@@ -3,7 +3,7 @@ import os
 
 
 def getMaps():
-    with open('Maps.json', 'r') as fin:
+    with open('app/Maps.json', 'r') as fin:
         parsed = json.loads(fin.read())
         maps = []
         for m in parsed:
