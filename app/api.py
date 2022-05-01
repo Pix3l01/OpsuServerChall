@@ -44,7 +44,7 @@ def upload():
     user = User.query.filter_by(guid=uid).first()
     if user is None:
         return base64.b64encode('No such user'.encode())
-    if user.otp is '' or user.otp is None:
+    if user.otp == '' or user.otp is None:
         print(user.otp)
         return base64.b64encode('Something went wrong storing the key. Please ask for another'.encode())
     try:
@@ -76,8 +76,11 @@ def upload():
         score = Score(mid=songMap['MID'], title=songMap['title'], artist=songMap['artist'], creator=songMap['creator'],
                       version=songMap['version'], score=score, msid=songMap['MSID'], user_id=user.id)
         db.session.add(score)
+        user.otp = ''
+        db.session.commit()
+        return str(decrypted)
     except Exception as e:
         print(e)
     user.otp = ''
     db.session.commit()
-    return str(decrypted)
+    return base64.b64encode('Maybe something went wrong. IDK ¯\\_(ツ)_/¯'.encode())
