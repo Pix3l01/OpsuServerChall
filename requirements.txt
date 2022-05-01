@@ -4,3 +4,4 @@ Flask_Login~=0.5.0
 Flask-SQLAlchemy~=2.5.1
 pycryptodome~=3.11.0
 SQLAlchemy~=1.4.27
+gunicorn

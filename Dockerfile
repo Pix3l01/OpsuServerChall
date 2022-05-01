@@ -6,4 +6,5 @@ COPY ./requirements.txt /app
 WORKDIR /app
 
 RUN pip install -r ./requirements.txt
+RUN chmod +x ./gunicorn.sh
 ENTRYPOINT ["./gunicorn.sh"]

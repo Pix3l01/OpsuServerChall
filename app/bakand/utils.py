@@ -22,7 +22,7 @@ def getMapsForProfileTable():
     # else:
     #     print("Non c'è il file")
     print(os.listdir('.'))
-    with open('app/Maps.json', 'r') as fin:
+    with open('Maps.json', 'r') as fin:
         parsed = json.loads(fin.read())
         maps = []
         for m in parsed:
@@ -33,7 +33,7 @@ def getMapsForProfileTable():
 def getClientHash():
     global clientHash
     if clientHash is None:
-        with open("app/static/Client.jar", "rb") as f:
+        with open("static/Client.jar", "rb") as f:
             b = f.read()  # read entire file as bytes
             clientHash = hashlib.sha256(b).hexdigest()
     print('New hash calculated')
