@@ -20,7 +20,7 @@ def register():
             if user:
                 flash('User already exists')
                 return redirect('/register')
-            db.session.add(User(username=username, password=generate_password_hash(password, method='sha256'), guid=createGuid()))
+            db.session.add(User(username=username, password=generate_password_hash(password, method='sha256'), guid=createGuid(), otp=''))
             db.session.commit()
         except Exception as e:
             # TODO: handle exceptions
