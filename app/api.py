@@ -1,13 +1,15 @@
 import base64
 import json
+import time
 
 from flask import Blueprint, request
 
 import bakand.cryptography as cp
 from bakand.db.dbClasses import User, db, Score
-from bakand.utils import getMaps
+from bakand.utils import getMaps, getClientHash
 
 api = Blueprint('api', __name__, template_folder='templates')
+clientHash, last = getClientHash()
 
 
 @api.route('/api')
@@ -37,6 +39,7 @@ def getKey():
 def upload():
     # TODO: delete otp from db once used
     uid = request.headers.get('Id')
+    global clientHash, last
     if uid is None:
         return base64.b64encode('Nope'.encode())
     user = User.query.filter_by(guid=uid).first()
@@ -47,6 +50,8 @@ def upload():
     loaded = json.loads(decrypted.decode())
     error = 0
     print(loaded)
+    if time.time() - last > 60:
+        clientHash, last = getClientHash()
     if loaded['checksum'] != '404cf2e581881d45350fc382847fff01ca637cdabf3fb11701a57de8d61ec3c5':
         error = 1
         print(error)

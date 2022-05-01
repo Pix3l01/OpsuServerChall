@@ -1,5 +1,9 @@
 import json
 import os
+import hashlib
+import time
+
+clientHash = None
 
 
 def getMaps():
@@ -24,6 +28,16 @@ def getMapsForProfileTable():
         for m in parsed:
             maps.append(ProfileMap(parsed[m]['MID'], parsed[m]['title'], parsed[m]['toBeat']))
         return maps
+
+
+def getClientHash():
+    global clientHash
+    if clientHash is None:
+        with open("app/static/Client.jar", "rb") as f:
+            b = f.read()  # read entire file as bytes
+            clientHash = hashlib.sha256(b).hexdigest()
+    print('New hash calculated')
+    return clientHash, int(time.time())
 
 
 class ProfileMap:
