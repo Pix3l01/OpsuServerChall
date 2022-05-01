@@ -52,7 +52,7 @@ def upload():
     print(loaded)
     if time.time() - last > 60:
         clientHash, last = getClientHash()
-    if loaded['checksum'] != '404cf2e581881d45350fc382847fff01ca637cdabf3fb11701a57de8d61ec3c5':
+    if loaded['checksum'] != clientHash:
         error = 1
         print(error)
         return base64.b64encode('Don\'t mess with the jar! @:<'.encode())
