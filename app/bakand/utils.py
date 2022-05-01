@@ -7,7 +7,7 @@ clientHash = None
 
 
 def getMaps():
-    with open('app/Maps.json', 'r') as fin:
+    with open('Maps.json', 'r') as fin:
         parsed = json.loads(fin.read())
         maps = []
         for m in parsed:

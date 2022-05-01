@@ -8,3 +8,4 @@ WORKDIR /app
 RUN pip install -r ./requirements.txt
 RUN chmod +x ./gunicorn.sh
 ENTRYPOINT ["./gunicorn.sh"]
+#ENTRYPOINT ["python", "-u", "app.py"]

@@ -14,6 +14,9 @@ def register():
         try:
             username = request.form.get('user')
             password = request.form.get('password')
+            if len(password) < 8:
+                flash('Password must be at least 8 characters long')
+                return redirect('/register')
             print(username, password)
             user = User.query.filter_by(username=username).first()
             print(user)
