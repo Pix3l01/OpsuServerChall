@@ -3,5 +3,7 @@ RUN apt-get update
 COPY ./app /app
 COPY ./requirements.txt /app
 
-RUN pip install -r /app/requirements.txt
-ENTRYPOINT ["python", "-u", "/app/app.py"]
+WORKDIR /app
+
+RUN pip install -r ./requirements.txt
+ENTRYPOINT ["./gunicorn.sh"]
