@@ -16,6 +16,6 @@ def profilePage():
         sc = Score.query.filter_by(user_id=current_user.id, mid=sMap.id).order_by(desc(Score.score)).first()
         if sc is not None:
             maps[i].score = sc.score
-            if maps[i].score >= maps[i].toBeat:
+            if maps[i].score > maps[i].toBeat:
                 maps[i].done = True
-    return render_template('profile.html', name=current_user.username, guid=current_user.guid, maps=maps, flag='ptm{I_D!d_Th3_08fUSCati0n_bY_H4nD}', authenticated=current_user.is_authenticated)
+    return render_template('profile.html', name=current_user.username, guid=current_user.guid, maps=maps, flag='ptm{I_D!d_Th3_08fUSCati0n_bY_H4nD}', authenticated=current_user.is_authenticated, zip=zip)
