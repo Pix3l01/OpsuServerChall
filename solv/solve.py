@@ -70,7 +70,7 @@ if __name__ == '__main__':
     "creator": "Nakagawa-Kanon",
     "version": "FOUR DIMENSIONS",
     "MSID": 39804,
-    "score": 132408003
+    "score": 132408011
   },
   "map3": {
     "MID": 31337,
@@ -85,7 +85,7 @@ if __name__ == '__main__':
     uid = input('Give me your uid: ')
     header = {'Id': uid}
     BASE_URL = input('Give me the base URL: ')
-    clientHash = input('Input the sha256 of Client.jar: ')
+    clientHash = input('Input the sha256 of Client.jar: ').lower()
     if not BASE_URL.endswith('/'):
         BASE_URL += '/'
 
