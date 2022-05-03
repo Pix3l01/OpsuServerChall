@@ -78,7 +78,7 @@ def upload():
         db.session.add(score)
         user.otp = ''
         db.session.commit()
-        return str(decrypted)
+        return base64.b64encode('Score correctly uploaded'.encode())
     except Exception as e:
         print(e)
     user.otp = ''
