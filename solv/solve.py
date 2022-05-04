@@ -47,7 +47,7 @@ def upload(url, header, body, hash, key, uid):
     toSend = {'checksum': hash, 'map': body, 'player': uid}
     toSend = base64.b64encode(encrypt(str(json.dumps(toSend)), genKey(key), uid))
     res = requests.post(url+'/api/upload', headers=header, json={'data': toSend.decode()}).text
-    print(res)
+    print(base64.b64decode(res))
 
 
 if __name__ == '__main__':
