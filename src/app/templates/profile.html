@@ -12,8 +12,11 @@
                 <h2>Hello {{ name }}!</h2>
                 <h3>This is your profile</h3>
                 <h3>Your GUID is: {{ guid }}</h3>
-                <h3>Download the client: <button type="submit" class="btn btn-primary"
-                                        onclick="window.open('static/Client.jar')">Client.jar</button></h3>
+                <h3>Download the client:
+                    <button type="submit" class="btn btn-primary"
+                            onclick="window.open('static/Client.jar')">Client.jar
+                    </button>
+                </h3>
             </div>
         </div>
         <div class="row align-items-center">
@@ -53,6 +56,15 @@
                 </table>
             </div>
         </div>
+        {% if not scored %}
+            <div class="row align-items-center">
+                <div class="col-9" style="padding: 10px">
+                    <div class="alert alert-warning" role="alert">
+                        If you have any problem with the client please red the <a href="/#client" class="alert-link">setup</a> before contacting an administrator
+                    </div>
+                </div>
+            </div>
+        {% endif %}
         {% if ns.winner == 1 %}
             <div class="row align-items-center">
                 <div class="col-9" style="padding: 10px">
