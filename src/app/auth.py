@@ -23,11 +23,16 @@ def register():
             if user:
                 flash('User already exists')
                 return redirect('/register')
-            db.session.add(User(username=username, password=generate_password_hash(password, method='sha256'), guid=createGuid(), otp=''))
+            db.session.add(
+                User(username=username, password=generate_password_hash(password, method='sha256'), guid=createGuid(),
+                     otp=''))
             db.session.commit()
+            print(f'User {username} registered', flush=True)
         except Exception as e:
-            # TODO: handle exceptions
-            print(e)
+            flash('Something went wrong during the registration, please try again. If the problem persists contact an '
+                  'administrator.')
+            print('Error during user registration!', flush=True)
+            print(e, flush=True)
         return redirect('/login')
     return render_template('register.html', authenticated=current_user.is_authenticated)
 
@@ -35,20 +40,17 @@ def register():
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        # login code goes here
+
         username = request.form.get('user')
         password = request.form.get('password')
         remember = True if request.form.get('remember') else False
 
         user = User.query.filter_by(username=username).first()
 
-        # check if the user actually exists
-        # take the user-supplied password, hash it, and compare it to the hashed password in the database
         if not user or not check_password_hash(user.password, password):
             flash('Please check your login details and try again.')
-            return redirect('/login')  # if the user doesn't exist or password is wrong, reload the page
+            return redirect('/login')
 
-        # if the above check passes, then we know the user has the right credentials
         login_user(user, remember=remember)
         return redirect('/profile')
     return render_template('login.html', authenticated=current_user.is_authenticated)
