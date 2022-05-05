@@ -15,7 +15,6 @@ def getMaps():
 
 
 def getMapsForProfileTable():
-    print(os.listdir('.'))
     with open('Maps.json', 'r') as fin:
         parsed = json.loads(fin.read())
         maps = []
@@ -29,7 +28,7 @@ def getClientHash():
         b = f.read()
         clientHash = hashlib.sha256(b).hexdigest()
 
-    print(f'New hash computed: {clientHash}')
+    print(f'New hash computed: {clientHash}', flush=True)
     return clientHash, int(time.time())
 
 
