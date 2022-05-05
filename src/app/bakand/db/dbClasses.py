@@ -32,4 +32,4 @@ class Score(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
     def __repr__(self):
-        return 'Map id: ' + str(self.mid) + '-Score: ' + str(self.score)
+        return 'Map id: ' + str(self.mid) + ' - Score: ' + str(self.score)
