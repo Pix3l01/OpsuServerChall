@@ -92,5 +92,3 @@ if __name__ == '__main__':
     for m in maps:
         plain = getKey(BASE_URL, header)
         upload(BASE_URL, header, maps[m], clientHash, plain, uid)
-
-
