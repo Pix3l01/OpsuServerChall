@@ -3,8 +3,6 @@ import os
 import hashlib
 import time
 
-clientHash = None
-
 
 def getMaps():
     with open('Maps.json', 'r') as fin:
@@ -17,10 +15,6 @@ def getMaps():
 
 
 def getMapsForProfileTable():
-    # if os.path.isfile('../Maps.json'):
-    #     print("C'è il file")
-    # else:
-    #     print("Non c'è il file")
     print(os.listdir('.'))
     with open('Maps.json', 'r') as fin:
         parsed = json.loads(fin.read())
@@ -31,12 +25,11 @@ def getMapsForProfileTable():
 
 
 def getClientHash():
-    global clientHash
-    if clientHash is None:
-        with open("static/Client.jar", "rb") as f:
-            b = f.read()  # read entire file as bytes
-            clientHash = hashlib.sha256(b).hexdigest()
-    print('New hash calculated')
+    with open("static/Client.jar", "rb") as f:
+        b = f.read()
+        clientHash = hashlib.sha256(b).hexdigest()
+
+    print(f'New hash computed: {clientHash}')
     return clientHash, int(time.time())
 
 
