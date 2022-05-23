@@ -8,5 +8,5 @@ WORKDIR /app
 RUN pip install -r ./requirements.txt
 RUN chmod +x ./gunicorn.sh
 RUN apt install sqlite3
-ENTRYPOINT ["./gunicorn.sh"]
-#ENTRYPOINT ["python", "-m", "flask", "run", "--host=0.0.0.0"]
+#ENTRYPOINT ["./gunicorn.sh"]
+ENTRYPOINT ["python", "-m", "flask", "run", "--host=0.0.0.0"]
